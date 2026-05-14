@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Indoria Gurukul School – Jhunjhunu, Rajasthan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Lato:wght@300;400;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:#0d1f4c; --navy-light:#162761; --saffron:#e8730a;
+      --gold:#c9a227; --gold-light:#f0d06a; --cream:#fdf6ec;
+      --white:#ffffff; --text-dark:#1a1a2e; --text-mid:#444;
+      --shadow:0 8px 40px rgba(13,31,76,0.13);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Lato','Noto Sans Devanagari',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;}
+
+    /* TOP BAR */
+    .topbar{background:var(--navy);color:#cdd8f5;font-size:0.8rem;padding:7px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+    .topbar a{color:var(--gold-light);text-decoration:none;margin-left:12px;}
+    .topbar a:hover{color:var(--saffron);}
+    .topbar-left span{font-weight:600;}
+    .topbar-right{display:flex;align-items:center;flex-wrap:wrap;}
+    .sicon{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;font-size:0.82rem;font-weight:900;text-decoration:none;transition:transform 0.2s;margin-left:8px;}
+    .sicon:hover{transform:scale(1.2);}
+    .sicon-fb{background:#1877f2;color:#fff;}
+    .sicon-ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%);color:#fff;}
+
+    /* HEADER */
+    header{background:linear-gradient(135deg,var(--navy) 60%,var(--navy-light) 100%);color:var(--white);padding:24px 5% 20px;display:flex;align-items:center;gap:22px;position:relative;overflow:hidden;}
+    header::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,39,0.18) 0%,transparent 70%);pointer-events:none;}
+    .school-logo{width:82px;height:82px;border-radius:50%;background:linear-gradient(145deg,var(--gold),var(--saffron));display:flex;align-items:center;justify-content:center;font-size:2.4rem;flex-shrink:0;box-shadow:0 4px 20px rgba(201,162,39,0.45);border:3px solid var(--gold-light);animation:pglow 3s ease-in-out infinite;}
+    @keyframes pglow{0%,100%{box-shadow:0 4px 20px rgba(201,162,39,0.45);}50%{box-shadow:0 4px 32px rgba(201,162,39,0.75);}}
+    .school-info h1{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3.5vw,2.3rem);font-weight:900;line-height:1.15;}
+    .school-info h1 span{color:var(--gold-light);}
+    .school-info .tagline{margin-top:5px;font-size:0.82rem;color:#b8c8f0;letter-spacing:0.07em;text-transform:uppercase;}
+    .school-info .est{margin-top:7px;display:inline-block;background:var(--saffron);color:var(--white);padding:3px 14px;border-radius:20px;font-size:0.74rem;font-weight:700;letter-spacing:0.1em;}
+
+    /* ── HAMBURGER NAV ── */
+    .nav-wrapper{background:var(--saffron);position:sticky;top:0;z-index:200;box-shadow:0 3px 20px rgba(232,115,10,0.4);}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0 5%;}
+    .nav-brand{color:var(--white);font-weight:800;font-size:0.9rem;letter-spacing:0.06em;padding:13px 0;}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:14px 0 14px 16px;background:none;border:none;}
+    .hamburger span{display:block;width:24px;height:2.5px;background:var(--white);border-radius:2px;transition:all 0.3s;}
+    .hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;}
+    .hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+    .nav-links{display:flex;align-items:center;}
+    .nav-links a{color:var(--white);text-decoration:none;padding:14px 14px;font-size:0.83rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;transition:background 0.2s;position:relative;display:block;}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:50%;right:50%;height:3px;background:var(--white);transition:left 0.25s,right 0.25s;}
+    .nav-links a:hover::after{left:15%;right:15%;}
+    .nav-links a:hover{background:rgba(0,0,0,0.12);}
+
+    @media(max-width:700px){
+      .hamburger{display:flex;}
+      .nav-brand{display:block;}
+      .nav-links{display:none;flex-direction:column;align-items:stretch;width:100%;border-top:1px solid rgba(255,255,255,0.2);}
+      .nav-links.open{display:flex;}
+      .nav-links a{padding:13px 5%;border-bottom:1px solid rgba(255,255,255,0.1);}
+      .nav-links a::after{display:none;}
+    }
+
+    /* HERO */
+    .hero{background:linear-gradient(120deg,#0d1f4c 0%,#1a3a7c 50%,#0d1f4c 100%);color:var(--white);padding:70px 5% 60px;text-align:center;position:relative;overflow:hidden;}
+    .hero::before,.hero::after{content:'';position:absolute;border-radius:50%;pointer-events:none;}
+    .hero::before{width:500px;height:500px;background:radial-gradient(circle,rgba(201,162,39,0.12) 0%,transparent 65%);top:-150px;left:-100px;}
+    .hero::after{width:400px;height:400px;background:radial-gradient(circle,rgba(232,115,10,0.10) 0%,transparent 65%);bottom:-130px;right:-80px;}
+    .hero-badge{display:inline-block;border:2px solid var(--gold);color:var(--gold-light);padding:5px 20px;border-radius:30px;font-size:0.82rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px;animation:fsu 0.8s ease both;}
+    .hero h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,5vw,3.6rem);font-weight:900;line-height:1.18;margin-bottom:16px;animation:fsu 0.9s 0.1s ease both;}
+    .hero h2 em{color:var(--gold-light);font-style:normal;}
+    .hero p{font-size:1rem;color:#b0c0e8;max-width:600px;margin:0 auto 32px;line-height:1.7;animation:fsu 0.9s 0.2s ease both;}
+    .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fsu 0.9s 0.3s ease both;}
+    @keyframes fsu{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+    .btn-primary{background:var(--saffron);color:var(--white);padding:12px 28px;border-radius:6px;text-decoration:none;font-weight:700;font-size:0.9rem;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 18px rgba(232,115,10,0.45);}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,115,10,0.55);}
+    .btn-outline{border:2px solid var(--gold);color:var(--gold-light);padding:10px 26px;border-radius:6px;text-decoration:none;font-weight:700;font-size:0.9rem;transition:background 0.2s,color 0.2s;}
+    .btn-outline:hover{background:var(--gold);color:var(--navy);}
+
+    /* STATS */
+    .stats-ribbon{background:var(--gold);display:grid;grid-template-columns:repeat(4,1fr);}
+    .stat-item{text-align:center;padding:20px 12px;border-right:1px solid rgba(255,255,255,0.35);color:var(--navy);}
+    .stat-item:last-child{border-right:none;}
+    .stat-item .num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;line-height:1;}
+    .stat-item .lbl{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;color:#3a2800;}
+
+    /* SECTIONS */
+    section{padding:65px 5%;}
+    .section-title{text-align:center;margin-bottom:46px;}
+    .section-title .pre{display:inline-block;color:var(--saffron);font-size:0.77rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px;}
+    .section-title h3{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;color:var(--navy);display:inline-block;}
+    .section-title h3::after{content:'';display:block;width:56px;height:4px;background:linear-gradient(90deg,var(--saffron),var(--gold));border-radius:2px;margin:10px auto 0;}
+
+    /* PRINCIPAL */
+    #principal{background:#fff8f0;}
+    .principal-wrapper{max-width:900px;margin:0 auto;display:flex;align-items:stretch;background:var(--white);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);}
+    .principal-left{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-light) 100%);padding:46px 32px;text-align:center;min-width:200px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
+    .principal-avatar{width:96px;height:96px;border-radius:50%;background:linear-gradient(145deg,var(--gold),var(--saffron));display:flex;align-items:center;justify-content:center;font-size:2.8rem;border:4px solid var(--gold-light);box-shadow:0 6px 24px rgba(201,162,39,0.4);}
+    .principal-left h4{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:800;color:var(--white);}
+    .principal-left .ptitle{font-size:0.75rem;color:var(--gold-light);letter-spacing:0.1em;text-transform:uppercase;}
+    .principal-right{padding:40px 40px 40px 36px;}
+    .qmark{font-family:'Playfair Display',serif;font-size:5rem;color:var(--gold);line-height:0.6;float:left;margin-right:10px;margin-top:12px;opacity:0.65;}
+    .principal-right p{font-size:0.96rem;color:var(--text-mid);line-height:1.88;font-style:italic;margin-bottom:14px;}
+    .psign{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--navy);font-weight:700;border-top:1px solid rgba(13,31,76,0.1);padding-top:13px;margin-top:8px;}
+
+    /* ABOUT */
+    #about{background:var(--white);}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:1100px;margin:0 auto;}
+    .about-text p{color:var(--text-mid);line-height:1.8;margin-bottom:14px;font-size:0.96rem;}
+    .highlight-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:var(--white);padding:20px 22px;border-radius:10px;margin-top:22px;border-left:5px solid var(--gold);}
+    .highlight-box p{color:#c8d6f0;margin:0;}
+    .about-visual{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .about-card{background:var(--cream);border:1.5px solid rgba(201,162,39,0.2);border-radius:12px;padding:20px 16px;text-align:center;transition:transform 0.2s,box-shadow 0.2s;}
+    .about-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+    .about-card .icon{font-size:1.9rem;margin-bottom:9px;}
+    .about-card h4{font-size:0.83rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.06em;}
+    .about-card p{font-size:0.78rem;color:var(--text-mid);margin-top:5px;}
+
+    /* COURSES */
+    #courses{background:var(--cream);}
+    .courses-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1100px;margin:0 auto;}
+    .course-card{background:var(--white);border-radius:14px;overflow:hidden;box-shadow:0 3px 20px rgba(13,31,76,0.08);transition:transform 0.25s,box-shadow 0.25s;border-top:5px solid var(--navy);}
+    .course-card:nth-child(2){border-top-color:var(--saffron);}
+    .course-card:nth-child(3){border-top-color:var(--gold);}
+    .course-card:nth-child(4){border-top-color:#2ecc71;}
+    .course-card:nth-child(5){border-top-color:#9b59b6;}
+    .course-card:nth-child(6){border-top-color:#e74c3c;}
+    .course-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(13,31,76,0.15);}
+    .course-card-body{padding:24px 20px;}
+    .course-card .icon{font-size:2rem;margin-bottom:10px;}
+    .course-card h4{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:8px;}
+    .course-card p{font-size:0.84rem;color:var(--text-mid);line-height:1.65;}
+    .course-tag{display:inline-block;margin-top:12px;background:var(--cream);color:var(--navy);border:1px solid rgba(13,31,76,0.2);padding:3px 12px;border-radius:20px;font-size:0.73rem;font-weight:700;}
+
+    /* FACILITIES */
+    #facilities{background:var(--navy);color:var(--white);}
+    #facilities .section-title .pre{color:var(--gold-light);}
+    #facilities .section-title h3{color:var(--white);}
+    .fac-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1100px;margin:0 auto;}
+    .fac-item{background:rgba(255,255,255,0.07);border:1px solid rgba(201,162,39,0.2);border-radius:12px;padding:24px 16px;text-align:center;transition:background 0.2s,transform 0.2s;}
+    .fac-item:hover{background:rgba(201,162,39,0.13);transform:translateY(-3px);}
+    .fac-item .icon{font-size:1.9rem;margin-bottom:9px;}
+    .fac-item h4{font-size:0.86rem;font-weight:700;letter-spacing:0.05em;color:var(--gold-light);}
+    .fac-item p{font-size:0.76rem;color:#8898cc;margin-top:4px;}
+
+    /* MEDIUM */
+    #medium{background:var(--white);}
+    .medium-cards{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;max-width:760px;margin:0 auto;}
+    .medium-card{flex:1;min-width:190px;max-width:270px;background:var(--cream);border-radius:16px;padding:34px 28px;text-align:center;box-shadow:var(--shadow);border:2px solid transparent;transition:border-color 0.25s,transform 0.25s;}
+    .medium-card:hover{border-color:var(--gold);transform:translateY(-5px);}
+    .medium-card .icon{font-size:2.8rem;margin-bottom:12px;}
+    .medium-card h4{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:800;color:var(--navy);}
+    .medium-card p{color:var(--text-mid);font-size:0.83rem;margin-top:7px;}
+
+    /* COMPETITIVE */
+    #competitive{background:var(--cream);}
+    .comp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1000px;margin:0 auto;}
+    .comp-card{background:linear-gradient(145deg,var(--navy),var(--navy-light));color:var(--white);border-radius:14px;padding:26px 16px;text-align:center;box-shadow:0 6px 24px rgba(13,31,76,0.2);transition:transform 0.22s;position:relative;overflow:hidden;}
+    .comp-card::before{content:'';position:absolute;top:-30px;right:-30px;width:88px;height:88px;border-radius:50%;background:rgba(201,162,39,0.15);}
+    .comp-card:hover{transform:translateY(-5px);}
+    .comp-card .icon{font-size:1.9rem;margin-bottom:10px;}
+    .comp-card h4{font-size:1rem;font-weight:800;color:var(--gold-light);}
+    .comp-card p{font-size:0.76rem;color:#9aaad0;margin-top:5px;}
+
+    /* ── GALLERY (CSS slides — no external images) ── */
+    #gallery{background:var(--navy);}
+    #gallery .section-title .pre{color:var(--gold-light);}
+    #gallery .section-title h3{color:var(--white);}
+    .gallery-wrap{position:relative;width:100%;max-width:960px;margin:0 auto;border-radius:18px;overflow:hidden;box-shadow:0 16px 60px rgba(0,0,0,0.55);}
+    .gallery-track{display:flex;transition:transform 0.7s cubic-bezier(0.77,0,0.18,1);will-change:transform;}
+    .gslide{flex:0 0 100%;width:100%;height:400px;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+    /* Each slide has its own gradient bg */
+    .gslide:nth-child(1){background:linear-gradient(135deg,#0d1f4c 0%,#1a4080 60%,#0d3060 100%);}
+    .gslide:nth-child(2){background:linear-gradient(135deg,#1a5c3a 0%,#2d8a5e 60%,#145230 100%);}
+    .gslide:nth-child(3){background:linear-gradient(135deg,#6b1a8c 0%,#9b3ec4 60%,#4a0f6e 100%);}
+    .gslide:nth-child(4){background:linear-gradient(135deg,#7a1a0e 0%,#c0420a 60%,#8b2800 100%);}
+    .gslide:nth-child(5){background:linear-gradient(135deg,#0e4a6b 0%,#1a7eaa 60%,#063a58 100%);}
+    .gslide:nth-child(6){background:linear-gradient(135deg,#3a1a0e 0%,#7a4820 60%,#5c2800 100%);}
+    .gslide:nth-child(7){background:linear-gradient(135deg,#1a1a6b 0%,#3a3ac8 60%,#10105a 100%);}
+    /* Decorative circles inside each slide */
+    .gslide::before,.gslide::after{content:'';position:absolute;border-radius:50%;pointer-events:none;}
+    .gslide::before{width:300px;height:300px;background:rgba(255,255,255,0.04);top:-80px;left:-60px;}
+    .gslide::after{width:200px;height:200px;background:rgba(255,255,255,0.05);bottom:-50px;right:-40px;}
+    .gslide-content{position:relative;z-index:2;padding:30px 40px;}
+    .gslide-icon{font-size:4rem;margin-bottom:18px;animation:gicon 3s ease-in-out infinite;}
+    @keyframes gicon{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+    .gslide-content h4{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,1.9rem);font-weight:800;color:var(--white);margin-bottom:12px;}
+    .gslide-content p{font-size:0.9rem;color:rgba(255,255,255,0.75);line-height:1.65;max-width:480px;margin:0 auto;}
+    .gslide-badge{display:inline-block;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.25);color:var(--gold-light);padding:5px 16px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px;}
+
+    .gbtn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);backdrop-filter:blur(6px);border:1.5px solid rgba(255,255,255,0.3);color:var(--white);border-radius:50%;width:44px;height:44px;font-size:1.1rem;cursor:pointer;transition:background 0.2s;display:flex;align-items:center;justify-content:center;z-index:10;}
+    .gbtn:hover{background:var(--saffron);border-color:var(--saffron);}
+    .gbtn.prev{left:14px;}
+    .gbtn.next{right:14px;}
+    .gdots{display:flex;justify-content:center;gap:9px;margin-top:20px;}
+    .gdot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.22);cursor:pointer;transition:background 0.3s,transform 0.3s;border:none;}
+    .gdot.active{background:var(--gold);transform:scale(1.35);}
+    .gsocial{display:flex;justify-content:center;gap:14px;margin-top:26px;flex-wrap:wrap;}
+    .gsocbtn{display:inline-flex;align-items:center;gap:8px;padding:11px 26px;border-radius:30px;text-decoration:none;font-weight:700;font-size:0.87rem;transition:transform 0.2s,box-shadow 0.2s;}
+    .gsocbtn:hover{transform:translateY(-3px);}
+    .gsocbtn.fb{background:#1877f2;color:#fff;box-shadow:0 4px 16px rgba(24,119,242,0.4);}
+    .gsocbtn.ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%);color:#fff;box-shadow:0 4px 16px rgba(214,36,159,0.35);}
+
+    /* CONTACT */
+    #contact{background:var(--navy);color:var(--white);}
+    #contact .section-title .pre{color:var(--gold-light);}
+    #contact .section-title h3{color:var(--white);}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;max-width:980px;margin:0 auto;}
+    .contact-items{display:flex;flex-direction:column;gap:16px;}
+    .ci{display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(201,162,39,0.18);border-radius:12px;padding:16px 18px;}
+    .ci-ico{font-size:1.45rem;flex-shrink:0;margin-top:2px;}
+    .ci h4{font-size:0.76rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:3px;}
+    .ci p,.ci a{font-size:0.9rem;color:#c0d0f0;text-decoration:none;line-height:1.55;display:block;}
+    .ci a:hover{color:var(--gold-light);}
+    .cmap{background:rgba(255,255,255,0.05);border:1px solid rgba(201,162,39,0.2);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;}
+    .cmap-hdr{background:rgba(201,162,39,0.13);padding:14px 18px;border-bottom:1px solid rgba(201,162,39,0.2);}
+    .cmap-hdr h4{font-family:'Playfair Display',serif;font-size:0.98rem;color:var(--gold-light);}
+    .cmap-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;text-align:center;gap:11px;}
+    .cmap-body .mico{font-size:2.8rem;opacity:0.6;}
+    .cmap-body p{color:#8898cc;font-size:0.86rem;line-height:1.6;}
+    .cmap-body a{background:var(--saffron);color:var(--white);padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:700;font-size:0.84rem;transition:background 0.2s;}
+    .cmap-body a:hover{background:#c0590a;}
+
+    /* ADMISSION BANNER */
+    .adm-banner{background:linear-gradient(135deg,var(--saffron),#c0520a);color:var(--white);text-align:center;padding:50px 5%;}
+    .adm-banner h3{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2.1rem);font-weight:800;margin-bottom:12px;}
+    .adm-banner p{font-size:0.98rem;opacity:0.92;margin-bottom:22px;}
+    .adm-banner .bw{background:var(--white);color:var(--saffron);padding:12px 34px;border-radius:6px;text-decoration:none;font-weight:800;font-size:0.93rem;display:inline-block;transition:transform 0.2s;}
+    .adm-banner .bw:hover{transform:scale(1.04);}
+
+    /* FOOTER */
+    footer{background:#07122e;color:#7a90c0;text-align:center;padding:28px 5%;font-size:0.82rem;line-height:1.7;}
+    footer strong{color:var(--gold-light);}
+    .fdiv{height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin-bottom:20px;}
+    .fsocial{display:flex;justify-content:center;gap:10px;margin:13px 0;}
+    .fsocial a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;font-size:0.9rem;font-weight:900;text-decoration:none;transition:transform 0.2s;}
+    .fsocial a:hover{transform:scale(1.2);}
+    .fsocial .fb{background:#1877f2;color:#fff;}
+    .fsocial .ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%);color:#fff;}
+    .fcredit{margin-top:16px;padding-top:13px;border-top:1px solid rgba(255,255,255,0.07);font-size:0.76rem;color:#455070;}
+    .fcredit a{color:var(--gold-light);text-decoration:none;}
+    .fcredit a:hover{color:var(--saffron);}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .about-grid,.contact-grid{grid-template-columns:1fr;gap:32px;}
+      .courses-grid,.comp-grid{grid-template-columns:1fr 1fr;}
+      .fac-grid{grid-template-columns:1fr 1fr;}
+      .stats-ribbon{grid-template-columns:1fr 1fr;}
+      .principal-wrapper{flex-direction:column;}
+      .principal-left{min-width:unset;width:100%;padding:30px 20px;}
+      .principal-right{padding:26px 22px;}
+    }
+    @media(max-width:600px){
+      header{flex-direction:column;text-align:center;gap:16px;}
+      .courses-grid,.comp-grid,.fac-grid{grid-template-columns:1fr;}
+      .stats-ribbon{grid-template-columns:1fr 1fr;}
+      .about-visual{grid-template-columns:1fr 1fr;}
+      .gslide{height:320px;}
+      .gslide-content{padding:20px 24px;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left"><span>📍 Nawalgarh Road, Derwala, Jhunjhunu, Rajasthan</span></div>
+  <div class="topbar-right">
+    <a href="tel:9461510088">📞 9461510088</a>
+    <a href="tel:9664457501">📞 9664457501</a>
+    <a class="sicon sicon-fb" href="https://www.facebook.com/indoriagurukul09?mibextid=rS40aB7S9Ucbxw6v" target="_blank" rel="noopener" title="Facebook">f</a>
+    <a class="sicon sicon-ig" href="https://www.instagram.com/indoriagurukul09?igsh=MXc2aHowZHVrYm5pbA==" target="_blank" rel="noopener" title="Instagram">&#9670;</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="school-logo">🏫</div>
+  <div class="school-info">
+    <h1>Indoria <span>Gurukul</span> School</h1>
+    <div class="tagline">ज्ञान · अनुशासन · उत्कृष्टता &nbsp;|&nbsp; Knowledge · Discipline · Excellence</div>
+    <div class="est">✦ Est. Since 25+ Years of Excellence ✦</div>
+  </div>
+</header>
+
+<!-- NAV with Hamburger -->
+<div class="nav-wrapper">
+  <div class="nav-inner">
+    <span class="nav-brand">🏫 Indoria Gurukul</span>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about" onclick="closeNav()">About</a>
+      <a href="#principal" onclick="closeNav()">Principal</a>
+      <a href="#courses" onclick="closeNav()">Courses</a>
+      <a href="#competitive" onclick="closeNav()">Competitive</a>
+      <a href="#facilities" onclick="closeNav()">Facilities</a>
+      <a href="#gallery" onclick="closeNav()">Gallery</a>
+      <a href="#contact" onclick="closeNav()">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-badge">✦ Rajasthan's Trusted School ✦</div>
+  <h2>Shaping the Leaders of<br/><em>Tomorrow, Today</em></h2>
+  <p>25 से अधिक वर्षों की शैक्षिक उत्कृष्टता के साथ, हम कक्षा 1 से XII तक Science stream में गुणवत्तापूर्ण शिक्षा प्रदान करते हैं। Hindi &amp; English दोनों माध्यम उपलब्ध।</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-primary">Admission Enquiry</a>
+    <a href="#courses" class="btn-outline">View Courses</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-ribbon">
+  <div class="stat-item"><div class="num">25+</div><div class="lbl">Years of Excellence</div></div>
+  <div class="stat-item"><div class="num">XII</div><div class="lbl">Highest Class</div></div>
+  <div class="stat-item"><div class="num">2</div><div class="lbl">Mediums Available</div></div>
+  <div class="stat-item"><div class="num">4+</div><div class="lbl">Competitive Exams</div></div>
+</div>
+
+<!-- PRINCIPAL -->
+<section id="principal">
+  <div class="section-title">
+    <div class="pre">प्रधानाचार्य संदेश</div>
+    <h3>Principal's Message</h3>
+  </div>
+  <div class="principal-wrapper">
+    <div class="principal-left">
+      <div class="principal-avatar">👨‍🏫</div>
+      <h4>Amit Kumar</h4>
+      <span class="ptitle">Principal</span>
+      <span style="color:#8898cc;font-size:0.73rem;margin-top:2px">Indoria Gurukul School</span>
+    </div>
+    <div class="principal-right">
+      <span class="qmark">"</span>
+      <p>Indoria Gurukul School में आप सभी का हार्दिक स्वागत है। हमारा विद्यालय केवल पुस्तकीय ज्ञान तक सीमित नहीं है — हम यहाँ हर बच्चे के सम्पूर्ण विकास पर ध्यान देते हैं। अनुशासन, सेवा भाव, और जिज्ञासा — ये तीन हमारे Gurukul की आत्मा हैं।</p>
+      <p>पिछले 25 वर्षों में हमने सैकड़ों विद्यार्थियों को उनके सपनों की दिशा में आगे बढ़ाया है। चाहे वह Board exams हों, NTSE हो, या Olympiad — हमारी team हर कदम पर साथ है। मेरा दृढ़ विश्वास है कि हर बच्चे में असीमित संभावनाएं हैं, बस सही मार्गदर्शन और संस्कार की आवश्यकता है।</p>
+      <div class="psign">— Amit Kumar &nbsp;|&nbsp; Principal, Indoria Gurukul School</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-title">
+    <div class="pre">हमारे बारे में</div>
+    <h3>About Our School</h3>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p><strong>Indoria Gurukul School</strong> Jhunjhunu जिले के Derwala में स्थित है। पिछले 25+ वर्षों से यह विद्यालय क्षेत्र के बच्चों को उच्च गुणवत्ता की शिक्षा प्रदान करता आ रहा है।</p>
+      <p>हमारे अनुभवी शिक्षक-गण हर छात्र पर व्यक्तिगत ध्यान देते हैं। हम न केवल Board परीक्षाओं बल्कि Olympiad, NTSE, KVPY जैसी प्रतिष्ठित परीक्षाओं की तैयारी भी कराते हैं।</p>
+      <p>विद्यालय में कक्षा 1 से XII तक Science stream उपलब्ध है, जो Hindi और English दोनों माध्यम में पढ़ाई जाती है।</p>
+      <div class="highlight-box"><p>🏆 25+ Years of Educational Excellence — Proudly serving the students of Derwala and surrounding areas of Jhunjhunu, Rajasthan.</p></div>
+    </div>
+    <div class="about-visual">
+      <div class="about-card"><div class="icon">🎓</div><h4>Class I – XII</h4><p>Comprehensive schooling from foundation to senior secondary</p></div>
+      <div class="about-card"><div class="icon">🔬</div><h4>Science Stream</h4><p>Physics, Chemistry, Biology, Mathematics</p></div>
+      <div class="about-card"><div class="icon">🏅</div><h4>Competitive</h4><p>NTSE, KVPY, Olympiad preparation</p></div>
+      <div class="about-card"><div class="icon">📘</div><h4>Bilingual</h4><p>Hindi &amp; English medium both available</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="section-title">
+    <div class="pre">हमारे कोर्स</div>
+    <h3>Courses & Classes</h3>
+  </div>
+  <div class="courses-grid">
+    <div class="course-card"><div class="course-card-body"><div class="icon">🌱</div><h4>Pre-Foundation</h4><p>Class VI–VIII के छात्रों के लिए मजबूत नींव। भविष्य की competitive exams की तैयारी का पहला कदम।</p><span class="course-tag">Class VI – VIII</span></div></div>
+    <div class="course-card"><div class="course-card-body"><div class="icon">🔬</div><h4>Science Stream</h4><p>Physics, Chemistry, Biology और Mathematics के साथ class XI–XII। NEET, JEE और board exams की comprehensive preparation।</p><span class="course-tag">Class XI – XII</span></div></div>
+
+    <div class="course-card"><div class="course-card-body"><div class="icon">🏆</div><h4>Olympiad Prep</h4><p>Maths, Science, English Olympiads की तैयारी। National और International competitions में भागीदारी।</p><span class="course-tag">Class IV – X</span></div></div>
+    <div class="course-card"><div class="course-card-body"><div class="icon">🌟</div><h4>NTSE Preparation</h4><p>National Talent Search Examination की special coaching। MAT और SAT दोनों sections की expert preparation।</p><span class="course-tag">Class IX – X</span></div></div>
+    <div class="course-card"><div class="course-card-body"><div class="icon">🔭</div><h4>STSE &amp; KVPY</h4><p>State Talent Search Exam और Kishore Vaigyanik Protsahan Yojana। Science scholarship दिलाने का हमारा लक्ष्य।</p><span class="course-tag">Class VIII – XII</span></div></div>
+  </div>
+</section>
+
+<!-- COMPETITIVE -->
+<section id="competitive">
+  <div class="section-title">
+    <div class="pre">प्रतिभा निखारें</div>
+    <h3>Competitive Exam Coaching</h3>
+  </div>
+  <div class="comp-grid">
+    <div class="comp-card"><div class="icon">🧠</div><h4>Olympiad</h4><p>Maths, Science &amp; English Olympiads — National &amp; International level</p></div>
+    <div class="comp-card"><div class="icon">📋</div><h4>STSE</h4><p>State Talent Search Examination — Rajasthan level scholarship test</p></div>
+    <div class="comp-card"><div class="icon">🌟</div><h4>NTSE</h4><p>National Talent Search — India's most prestigious scholarship exam</p></div>
+    <div class="comp-card"><div class="icon">🔭</div><h4>KVPY</h4><p>Kishore Vaigyanik Protsahan Yojana — Science scholarship by DST</p></div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section id="facilities">
+  <div class="section-title">
+    <div class="pre">सुविधाएं</div>
+    <h3>Our Facilities</h3>
+  </div>
+  <div class="fac-grid">
+    <div class="fac-item"><div class="icon">📚</div><h4>Library</h4><p>Vast collection of books &amp; study material</p></div>
+    <div class="fac-item"><div class="icon">🔬</div><h4>Science Lab</h4><p>Well-equipped Physics, Chemistry &amp; Biology labs</p></div>
+    <div class="fac-item"><div class="icon">🖥️</div><h4>Computer Lab</h4><p>Modern computers with internet access</p></div>
+    <div class="fac-item"><div class="icon">🏃</div><h4>Playground</h4><p>Spacious ground for sports &amp; activities</p></div>
+    <div class="fac-item"><div class="icon">👨‍🏫</div><h4>Expert Faculty</h4><p>Highly qualified &amp; experienced teachers</p></div>
+    <div class="fac-item"><div class="icon">📝</div><h4>Regular Tests</h4><p>Weekly &amp; monthly assessments for progress</p></div>
+    <div class="fac-item"><div class="icon">🗣️</div><h4>Hindi &amp; English</h4><p>Bilingual teaching for better understanding</p></div>
+    <div class="fac-item"><div class="icon">🎯</div><h4>Career Guidance</h4><p>Counselling &amp; guidance for higher studies</p></div>
+  </div>
+</section>
+
+<!-- MEDIUM -->
+<section id="medium">
+  <div class="section-title">
+    <div class="pre">शिक्षा का माध्यम</div>
+    <h3>Medium of Instruction</h3>
+  </div>
+  <div class="medium-cards">
+    <div class="medium-card">
+      <div class="icon">🇮🇳</div>
+      <h4>हिंदी माध्यम</h4>
+      <p>Hindi Medium — सभी विषय हिंदी में पढ़ाए जाते हैं। Rajasthan Board के अनुसार पाठ्यक्रम।</p>
+    </div>
+    <div class="medium-card">
+      <div class="icon">📘</div>
+      <h4>English Medium</h4>
+      <p>English Medium — All subjects taught in English. Ideal for students targeting national-level competitive exams.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-title">
+    <div class="pre">हमारी झलकियां</div>
+    <h3>School Gallery</h3>
+  </div>
+
+  <div class="gallery-wrap">
+    <div class="gallery-track" id="gTrack">
+
+      <div class="gslide">
+        <div class="gslide-content">
+          <div class="gslide-badge">Our School</div>
+          <div class="gslide-icon">🏫</div>
+          <h4>Indoria Gurukul School</h4>
+          <p>Nawalgarh Road, Derwala, Jhunjhunu, Rajasthan — 25+ Years of Academic Excellence</p>
+        </div>
+      </div>
+
+      <div class="gslide">
+        <div class="gslide-content">
+          <div class="gslide-badge">Learning</div>
+          <div class="gslide-icon">📖</div>
+          <h4>Smart Classrooms</h4>
+          <p>Modern, engaging learning environment. Hindi &amp; English medium — both available for all students.</p>
+        </div>
+      </div>
+
+      <div class="gslide">
+        <div class="gslide-content">
+          <div class="gslide-badge">Science</div>
+          <div class="gslide-icon">🔬</div>
+          <h4>Science Laboratory</h4>
+          <p>Hands-on practical experiments in Physics, Chemistry &amp; Biology. Building future scientists!</p>
+        </div>
+      </div>
+
+      <div class="gslide">
+        <div class="gslide-content">
+          <div class="gslide-badge">Knowledge</div>
+          <div class="gslide-icon">📚</div>
+          <h4>School Library</h4>
+          <p>Thousands of books, reference material, and study resources for all classes from I to XII.</p>
+        </div>
+      </div>
+
+      <div class="gslide">
+        <div class="gslide-content">
+          <div class="gslide-badge">Our Students</div>
+          <div class="gslide-icon">🎓</div>
+          <h4>Bright Young Minds</h4>
+          <p>Nurturing talent, character, and confidence. Every student is unique — we celebrate that!</p>
+        </div>
+      </div>
+
+      <div class="gslide">
+        <div class="gslide-content">
+          <div class="gslide-badge">Sports</div>
+          <div class="gslide-icon">🏃</div>
+          <h4>Sports &amp; Activities</h4>
+          <p>Beyond academics — sports, cultural events, and extracurricular activities for holistic growth.</p>
+        </div>
+      </div>
+
+      <div class="gslide">
+        <div class="gslide-content">
+          <div class="gslide-badge">Achievement</div>
+          <div class="gslide-icon">🏆</div>
+          <h4>Awards &amp; Achievements</h4>
+          <p>NTSE, Olympiad, KVPY toppers — our students shine at every level. Proud of every result!</p>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="gbtn prev" id="gPrev">&#8592;</button>
+    <button class="gbtn next" id="gNext">&#8594;</button>
+  </div>
+
+  <div class="gdots" id="gDots"></div>
+
+  <div class="gsocial">
+    <a class="gsocbtn fb" href="https://www.facebook.com/indoriagurukul09?mibextid=rS40aB7S9Ucbxw6v" target="_blank" rel="noopener">
+      <span style="font-weight:900">f</span> Facebook पर देखें
+    </a>
+    <a class="gsocbtn ig" href="https://www.instagram.com/indoriagurukul09?igsh=MXc2aHowZHVrYm5pbA==" target="_blank" rel="noopener">
+      <span>&#9670;</span> Instagram पर देखें
+    </a>
+  </div>
+</section>
+
+<!-- ADMISSION BANNER -->
+<div class="adm-banner">
+  <h3>🎓 Admissions Open — New Academic Session</h3>
+  <p>सीटें सीमित हैं — आज ही Enquiry करें और अपने बच्चे का भविष्य सुरक्षित करें।<br/>Limited seats available. Contact us now to secure admission.</p>
+  <a href="tel:9461510088" class="bw">📞 Call for Admission: 9461510088</a>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-title">
+    <div class="pre">संपर्क करें</div>
+    <h3>Contact Us</h3>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-items">
+      <div class="ci"><div class="ci-ico">📍</div><div><h4>Address</h4><p>Nawalgarh Road, Derwala,<br/>Jhunjhunu, Rajasthan</p></div></div>
+      <div class="ci"><div class="ci-ico">📞</div><div><h4>Phone (1)</h4><a href="tel:9461510088">9461510088</a></div></div>
+      <div class="ci"><div class="ci-ico">📞</div><div><h4>Phone (2)</h4><a href="tel:9664457501">9664457501</a></div></div>
+      <div class="ci"><div class="ci-ico">🕐</div><div><h4>School Hours</h4><p>Monday – Saturday &nbsp;|&nbsp; 7:00 AM – 2:00 PM</p></div></div>
+      <div class="ci">
+        <div class="ci-ico">📱</div>
+        <div>
+          <h4>Follow Us</h4>
+          <a href="https://www.facebook.com/indoriagurukul09?mibextid=rS40aB7S9Ucbxw6v" target="_blank" rel="noopener">📘 Facebook: @indoriagurukul09</a>
+          <a href="https://www.instagram.com/indoriagurukul09?igsh=MXc2aHowZHVrYm5pbA==" target="_blank" rel="noopener" style="margin-top:5px">📷 Instagram: @indoriagurukul09</a>
+        </div>
+      </div>
+    </div>
+    <div class="cmap">
+      <div class="cmap-hdr"><h4>📍 Find Us on Map</h4></div>
+      <div class="cmap-body">
+        <div class="mico">🗺️</div>
+        <p><strong style="color:#c8d8f8">Indoria Gurukul School</strong><br/>Nawalgarh Road, Derwala,<br/>Jhunjhunu, Rajasthan</p>
+        <a href="https://maps.google.com/?q=Indoria+Gurukul+School+Derwala+Jhunjhunu+Rajasthan" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fdiv"></div>
+  <p>
+    <strong>Indoria Gurukul School</strong><br/>
+    Nawalgarh Road, Derwala, Jhunjhunu, Rajasthan<br/>
+    📞 <a href="tel:9461510088" style="color:var(--gold-light);text-decoration:none">9461510088</a>
+    &nbsp;|&nbsp;
+    📞 <a href="tel:9664457501" style="color:var(--gold-light);text-decoration:none">9664457501</a>
+  </p>
+  <p style="margin-top:7px">Principal: <strong>Amit Kumar</strong></p>
+  <div class="fsocial">
+    <a class="fb" href="https://www.facebook.com/indoriagurukul09?mibextid=rS40aB7S9Ucbxw6v" target="_blank" rel="noopener" title="Facebook">f</a>
+    <a class="ig" href="https://www.instagram.com/indoriagurukul09?igsh=MXc2aHowZHVrYm5pbA==" target="_blank" rel="noopener" title="Instagram">&#9670;</a>
+  </div>
+  <p style="font-size:0.75rem;opacity:0.45;margin-top:5px">© 2025 Indoria Gurukul School. All Rights Reserved.</p>
+  <div class="fcredit">
+    Designed &amp; Developed by
+    <a href="tel:7878498456"><strong>Mindspark Agency</strong></a>
+    &nbsp;|&nbsp; 📞 <a href="tel:7878498456">7878498456</a>
+  </div>
+</footer>
+
+<script>
+/* ── HAMBURGER MENU ── */
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('navLinks');
+hamburger.addEventListener('click',()=>{
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+function closeNav(){
+  hamburger.classList.remove('open');
+  navLinks.classList.remove('open');
+}
+
+/* ── GALLERY SLIDER ── */
+const gWrap  = document.querySelector('.gallery-wrap');
+const track  = document.getElementById('gTrack');
+const slides = track.querySelectorAll('.gslide');
+const dotsC  = document.getElementById('gDots');
+let cur=0, timer;
+
+slides.forEach((_,i)=>{
+  const d=document.createElement('button');
+  d.className='gdot'+(i===0?' active':'');
+  d.addEventListener('click',()=>{stop();goTo(i);start();});
+  dotsC.appendChild(d);
+});
+
+function slideWidth(){ return gWrap.offsetWidth; }
+
+function goTo(n){
+  dotsC.children[cur].classList.remove('active');
+  cur=(n+slides.length)%slides.length;
+  track.style.transform=`translateX(-${cur * slideWidth()}px)`;
+  dotsC.children[cur].classList.add('active');
+}
+const nxt=()=>goTo(cur+1), prv=()=>goTo(cur-1);
+function start(){timer=setInterval(nxt,3500);}
+function stop(){clearInterval(timer);}
+
+document.getElementById('gNext').addEventListener('click',()=>{stop();nxt();start();});
+document.getElementById('gPrev').addEventListener('click',()=>{stop();prv();start();});
+gWrap.addEventListener('mouseenter',stop);
+gWrap.addEventListener('mouseleave',start);
+
+/* Recalculate on resize */
+window.addEventListener('resize',()=>{
+  track.style.transition='none';
+  track.style.transform=`translateX(-${cur * slideWidth()}px)`;
+  setTimeout(()=>{ track.style.transition='transform 0.7s cubic-bezier(0.77,0,0.18,1)'; },50);
+});
+
+let sx=0;
+track.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
+track.addEventListener('touchend',e=>{
+  const d=sx-e.changedTouches[0].clientX;
+  if(Math.abs(d)>40){stop();d>0?nxt():prv();start();}
+});
+start();
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const t=document.querySelector(this.getAttribute('href'));
+    if(t){e.preventDefault();const h=document.querySelector('.nav-wrapper').offsetHeight;window.scrollTo({top:t.offsetTop-h-10,behavior:'smooth'});}
+  });
+});
+
+/* ── SCROLL REVEAL ── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});
+},{threshold:0.08});
+document.querySelectorAll('.course-card,.fac-item,.comp-card,.about-card,.ci,.medium-card,.principal-wrapper').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity 0.55s ease, transform 0.55s ease';obs.observe(el);
+});
+</script>
+</body>
+</html>
